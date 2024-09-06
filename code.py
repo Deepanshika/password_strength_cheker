@@ -1,4 +1,5 @@
 import string
+import requests
 
 password = input("Enter your password : ")
 
@@ -11,9 +12,11 @@ characters = [upper_case, lower_case, digits, special]
 
 length = len(password)
 score = 0
+url = 'https://raw.githubusercontent.com/Deepanshika/password_strength_cheker/main/common_passwords.txt'
 
-with open('C:\\Users\\DEEPANSHIKA\\OneDrive\\Documents\\PROJECTS\\common_passwords.txt', 'r') as f :
-    common = f.read().splitlines()
+response = request.get(url)
+if response.status_code == 200 :
+    common = response.text.splitlines()
 
 if password in common :
     print("Password found in common list, please change")
